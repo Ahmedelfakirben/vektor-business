@@ -1,0 +1,62 @@
+-- ============================================================
+-- RPC: Reset Database
+-- Allows two modes: 'transactions' (keeps products/clients) or 'full' (purges catalogs too, except users/treasury/depots)
+-- ============================================================
+
+CREATE OR REPLACE FUNCTION rpc_reset_database(p_mode TEXT)
+RETURNS void AS $$
+BEGIN
+    -- Disable triggers temporarily if needed, though TRUNCATE handles it well usually.
+    
+    IF p_mode = 'full' THEN
+        -- TRUNCATE CASCADE will automatically delete all lines (bon_livraison_lignes, etc.)
+        -- and stock logic. Also deletes operations because of references, but we explicitly list them.
+        TRUNCATE TABLE 
+            clients, 
+            fournisseurs, 
+            familles_articles, 
+            sous_familles_articles, 
+            articles, 
+            stock,
+            devis, 
+            bon_livraisons, 
+            bon_retours, 
+            bon_commandes, 
+            bon_achats, 
+            bon_retour_achats, 
+            ventes_pos, 
+            paiements, 
+            depenses,
+            mouvements_stock, 
+            mouvements_tresorerie 
+        CASCADE;
+        
+    ELSIF p_mode = 'transactions' THEN
+        TRUNCATE TABLE 
+            devis, 
+            bon_livraisons, 
+            bon_retours, 
+            bon_commandes, 
+            bon_achats, 
+            bon_retour_achats, 
+            ventes_pos, 
+            paiements, 
+            depenses,
+            mouvements_stock, 
+            mouvements_tresorerie 
+        CASCADE;
+        
+        -- Reset stock quantities instead of deleting stock rows tracking articles
+        UPDATE stock SET quantite = 0, quantite_fiscale = 0 WHERE id IS NOT NULL;
+    ELSE
+        RAISE EXCEPTION 'Invalid mode. Must be transactions or full';
+    END IF;
+
+    -- Reset treasury balances
+    UPDATE tresoreries SET solde = 0, solde_fiscale = 0 WHERE id IS NOT NULL;
+    
+    -- Reset numbering sequences
+    UPDATE sequences SET dernier_numero = 0 WHERE id IS NOT NULL;
+
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;

@@ -1,0 +1,33 @@
+{
+  "name": "digital-alt-desktop",
+  "version": "1.0.0",
+  "description": "Desktop Application MSI for Digital ALT ERP",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:installer": "electron-builder --win nsis"
+  },
+  "author": "ISH",
+  "license": "ISC",
+  "build": {
+    "appId": "com.elfakir.digitalalt",
+    "productName": "Digital ALT",
+    "win": {
+      "target": [
+        "msi"
+      ],
+      "icon": "icon.ico"
+    },
+    "msi": {
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "directories": {
+      "output": "dist"
+    }
+  },
+  "devDependencies": {
+    "electron": "^41.2.0",
+    "electron-builder": "^24.13.3"
+  }
+}
