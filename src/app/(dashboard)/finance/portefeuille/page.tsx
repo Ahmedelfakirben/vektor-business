@@ -21,7 +21,7 @@ export default function PortefeuillePage() {
             const { data, error } = await supabase
                 .from("paiements")
                 .select("*, tresorerie:tresoreries(*)")
-                .in("mode_paiement", ["cheque", "effet"])
+                .in("mode_paiement", ["cheque", "effet"] as any)
                 .order("date_echeance", { ascending: true })
             if (error) throw error
             return data as any[]
