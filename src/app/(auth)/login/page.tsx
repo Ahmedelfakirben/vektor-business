@@ -57,23 +57,23 @@ function LoginForm() {
   }
 
   return (
-    <Card className="w-full max-w-md shadow-2xl border-orange-500/20 bg-slate-900/90 backdrop-blur-xl text-slate-100">
+    <Card className="w-full max-w-md shadow-2xl border-blue-500/20 bg-slate-900/90 backdrop-blur-xl text-slate-100">
       <CardHeader className="text-center pb-2">
         <div className="mx-auto mb-5 flex flex-col items-center gap-3">
-          <div className="h-32 w-32 overflow-hidden rounded-2xl shadow-[0_0_35px_rgba(249,115,22,0.3)] ring-2 ring-orange-500/40 bg-slate-950 p-1 transition-transform duration-300 hover:scale-105">
+          <div className="h-32 w-32 overflow-hidden rounded-2xl shadow-[0_0_35px_rgba(59,130,246,0.3)] ring-2 ring-blue-500/40 bg-slate-950 p-1 transition-transform duration-300 hover:scale-105">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo.jpeg" alt="Linventory Logo" className="h-full w-full object-cover rounded-xl" />
+            <img src="/logo.png" alt="Vektor Business" className="h-full w-full object-cover rounded-xl" />
           </div>
           <div>
-            <h1 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500 tracking-tight">
-              Linventory
+            <h1 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-400 tracking-tight">
+              Vektor Business
             </h1>
-            <p className="text-[11px] tracking-widest uppercase font-semibold text-orange-400/80 mt-0.5">
+            <p className="text-[11px] tracking-widest uppercase font-semibold text-blue-400/80 mt-0.5">
               ERP &amp; Gestion Commerciale
             </p>
           </div>
           {isPosRedirect && (
-            <Badge variant="outline" className="gap-1.5 px-3 py-1 text-xs border-orange-500/40 text-orange-400 bg-orange-500/10 font-bold">
+            <Badge variant="outline" className="gap-1.5 px-3 py-1 text-xs border-blue-500/40 text-blue-400 bg-blue-500/10 font-bold">
               <ShoppingBag className="h-3.5 w-3.5" />
               Terminal Point de Vente (POS)
             </Badge>
@@ -123,12 +123,40 @@ function LoginForm() {
           )}
           <Button 
             type="submit" 
-            className="w-full bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-bold shadow-lg shadow-orange-500/25 transition-all duration-200 py-2.5" 
+            className="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-700 hover:to-indigo-700 text-white font-bold shadow-lg shadow-blue-500/25 transition-all duration-200 py-2.5" 
             disabled={loading}
           >
             {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             {isPosRedirect ? "Accéder à la Caisse" : "Se connecter"}
           </Button>
+
+          <div className="relative flex py-1 items-center">
+            <div className="flex-grow border-t border-slate-800"></div>
+            <span className="flex-shrink mx-3 text-slate-500 text-[11px] uppercase font-bold tracking-wider">ou accès démo</span>
+            <div className="flex-grow border-t border-slate-800"></div>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => {
+              const emailInput = document.getElementById('email') as HTMLInputElement;
+              const passInput = document.getElementById('password') as HTMLInputElement;
+              if (emailInput && passInput) {
+                emailInput.value = 'mouad@buseness.com';
+                passInput.value = '!3ruePjMct5S';
+                // Trigger react-hook-form change events
+                emailInput.dispatchEvent(new Event('input', { bubbles: true }));
+                passInput.dispatchEvent(new Event('input', { bubbles: true }));
+                setTimeout(() => {
+                  const formEl = document.querySelector('form');
+                  if (formEl) formEl.requestSubmit();
+                }, 80);
+              }
+            }}
+            className="w-full bg-slate-950 hover:bg-slate-800 text-blue-400 border border-blue-500/40 font-bold py-2.5 px-4 rounded-xl shadow-md transition-all duration-200 flex items-center justify-center gap-2 hover:scale-[1.01] text-sm"
+          >
+            <span>🚀 Tester la Démo Interactive (1 Clic)</span>
+          </button>
         </form>
 
         <InstallPWA />

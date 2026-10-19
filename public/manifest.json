@@ -1,11 +1,11 @@
 {
-  "name": "Linventory ERP",
-  "short_name": "Linventory",
-  "description": "Système de gestion commerciale & inventaire Linventory",
+  "name": "Vektor Business ERP",
+  "short_name": "Vektor Business",
+  "description": "Suite de gestion commerciale & finance Vektor Business",
   "start_url": "/dashboard",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ea580c",
+  "background_color": "#020617",
+  "theme_color": "#3b82f6",
   "icons": [
     {
       "src": "/icon-192.png",

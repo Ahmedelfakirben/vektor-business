@@ -4,7 +4,7 @@ import { Providers } from "@/lib/providers"
 
 export const metadata: Metadata = {
   title: "Vektor Business | ERP & Gestión Comercial",
-  description: "Système de gestion commerciale, stocks et point de vente Linventory",
+  description: "Suite integral de gestión comercial, finanzas multi-empresa y control de inventario",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -12,8 +12,11 @@ export const metadata: Metadata = {
     title: "Vektor Business | ERP & Gestión Comercial",
   },
   icons: {
-    icon: "/logo.jpeg",
-    apple: "/logo.jpeg",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon.png", sizes: "64x64", type: "image/png" },
+    ],
+    apple: "/icon-192.png",
   },
 }
 

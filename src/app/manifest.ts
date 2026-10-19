@@ -2,13 +2,13 @@ import { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Linventory ERP',
-    short_name: 'Linventory',
-    description: 'Système de gestion commerciale & inventaire Linventory',
+    name: 'Vektor Business ERP',
+    short_name: 'Vektor Business',
+    description: 'Suite de gestion commerciale & finance Vektor Business',
     start_url: '/',
     display: 'standalone',
-    background_color: '#ffffff',
-    theme_color: '#ea580c', // Color naranja principal
+    background_color: '#020617',
+    theme_color: '#3b82f6', // Sapphire blue
     icons: [
       {
         src: '/favicon.ico',
