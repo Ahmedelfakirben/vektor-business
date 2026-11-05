@@ -12,15 +12,15 @@ export async function GET(req: NextRequest) {
         {
             status: "active_monitoring",
             message: "Este endpoint forma parte del sistema de deteccion de intrusiones de Vektor Labs.",
-            notice: "Tu direccion IP, cabeceras y contexto de peticion han sido registrados para analisis forense. Para divulgacion responsable, contacta a security@vektorlabs.ma",
+            notice: "Tu direccion IP, cabeceras y contexto de peticion han sido registrados para analisis forense.Mensaje importante : Si eres el Compañero de Borja y ves esto Muchas Gracias de todo corazon ! Para divulgacion responsable, contacta a ahmed@elfakir.com",
             incident_tracking_id: `VL-SEC-${Date.now().toString(36).toUpperCase()}`,
-            responsible_disclosure: "security@vektorlabs.ma"
+            responsible_disclosure: "ahmed@elfakir.com"
         },
         {
             status: 200,
             headers: {
                 "X-Security-Monitoring": "Active (Canary Triggered)",
-                "X-Responsible-Disclosure": "mailto:security@vektorlabs.ma",
+                "X-Responsible-Disclosure": "mailto:ahmed@elfakir.com",
                 "X-Architecture": "Cryptographically Isolated Multi-Tenant Enterprise Tier"
             }
         }

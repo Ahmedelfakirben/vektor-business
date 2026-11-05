@@ -27,6 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
+      <head>
+        <meta name="x-internal-staging-token" content="vkt_canary_sec_89f02a7b8e1c" />
+      </head>
       <body className="font-sans antialiased">
         <Providers>{children}</Providers>
       </body>
